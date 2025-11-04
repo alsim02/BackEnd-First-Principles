@@ -1,0 +1,37 @@
+# Appunti: Serialization e Deserialization
+
+## 1. Cosa sono Serialization e Deserialization
+- **Serialization:** processo di conversione di dati complessi in un formato comune e trasmissibile (es. JSON).
+- **Deserialization:** processo inverso, ovvero convertire i dati ricevuti nel formato comune in strutture dati native del linguaggio.
+
+## 2. Perché sono importanti
+- Permettono a client e server, potenzialmente scritti in linguaggi diversi (es. JavaScript e Rust), di comunicare e comprendere i dati scambiati.
+- Mantengono l'interoperabilità tra sistemi diversi indipendentemente dal linguaggio o piattaforma.
+
+## 3. Comunicazione client-server
+- Il client (es. app JavaScript) invia richieste HTTP con dati serializzati (in formato JSON).
+- Il server (es. scritto in Rust) deserializza i dati in strutture native per elaborare la richiesta.
+- La risposta del server viene serializzata nuovamente in JSON e inviata al client.
+
+## 4. Standard comuni di serialization
+- **JSON:** il più comune per comunicazioni HTTP/REST, leggibile dall’uomo, supporta strutture dati come stringhe, numeri, booleani, array e oggetti annidati.
+- **Altri formati text-based:** YAML, XML.
+- **Formati binari:** come Protobuf, usati in scenari diversi o per prestazioni.
+
+## 5. JSON in dettaglio
+- Struttura chiave-valore con chiavi sempre stringhe racchiuse tra doppi apici.
+- Supporta valore stringa, numero, booleano, array o oggetto annidato.
+- Diffuso nel logging, file di configurazione e per la trasmissione dati via API.
+
+## 6. Modello mentale OSI (breve)
+- I dati in JSON vengono incapsulati nel livello applicazione e trasmessi attraverso vari livelli (TCP/IP, fisico).
+
+## 7. Flusso tipico di dati
+- Il client converte i dati nel formato JSON (serializzazione) e li invia nel corpo della richiesta.
+- Il server deserializza il JSON in dati nativi, elabora la logica e serializza la risposta JSON.
+- Il client riceve e deserializza la risposta per mostrare/interagire con i dati.
+
+## 8. Vantaggi della serializzazione standardizzata
+- Compatibilità tra diversi linguaggi e piattaforme.
+- Facilita la manutenzione e l'integrazione di sistemi eterogenei.
+- Consente comunicazioni chiare, prevedibili e sicure su rete.
