@@ -1,0 +1,57 @@
+# Appunti: Concetti chiave sulla lezione di HTTP
+
+## 1. Cos'è HTTP
+Protocollo di comunicazione tra client e server, fondamentale per il web. Permette di scambiare risorse come pagine HTML, immagini e dati JSON.
+
+## 2. Evoluzione di HTTP
+- **HTTP/1.0:** ogni richiesta apriva una nuova connessione.
+- **HTTP/1.1:** introduzione delle connessioni persistenti (keep-alive), che migliorano le prestazioni.
+- **HTTP/2:** multiplexing, header compression, server push, ottimizzazione del caricamento.
+- **HTTP/3:** basato su QUIC, migliora ancora velocità e latenza, con gestione più efficiente delle connessioni.
+
+## 3. Messaggi HTTP
+- Composti da **request** (dal client) e **response** (dal server).
+- Ogni messaggio contiene: linea di comando/risposta, headers e body opzionale.
+
+## 4. Headers HTTP
+- Chiave-valore, inviano metadati utili a interpretare correttamente il messaggio.
+- **Tipi principali:**
+  - *Request headers:* informa il server su capacità e preferenze (es. User-Agent, Authorization, Accept).
+  - *Response headers:* forniscono metadati sulla risposta (es. Content-Type, Cache-Control).
+  - *Security headers:* migliorano la sicurezza (es. HSTS, Content Security Policy, Cookie flags).
+
+## 5. Metodi HTTP
+- **GET:** recupera risorse, non modifica niente (idempotente).
+- **POST:** invia dati per creare risorse (non idempotente).
+- **PUT:** sostituisce interamente una risorsa (idempotente).
+- **PATCH:** aggiorna parzialmente una risorsa (non idempotente).
+- **DELETE:** elimina risorsa (idempotente).
+- **OPTIONS:** usato per pre-flight in CORS, verifica capacità del server.
+- **HEAD:** richiede solo headers, senza corpo.
+
+## 6. Idempotenza dei metodi
+- *Idempotente:* chiamabile più volte con stessi effetti (es. GET, PUT, DELETE).
+- *Non idempotente:* effetti variabili, anche ripetendo (es. POST).
+
+## 7. Request e Response (struttura)
+- **Request:** linea di comando, URL, headers, body (per esempio dati inviati dall’utente).
+- **Response:** versione HTTP, status code, headers, body (risorsa o messaggio di errore).
+
+## 8. Status Code
+- **2xx:** Successo (es. 200 OK, 201 Creato, 204 No Content).
+- **3xx:** Redirezioni (es. 301, 302, 304).
+- **4xx:** Errori client (es. 400 Bad Request, 401 Unauthorized, 404 Not Found, 403 Forbidden).
+- **5xx:** Errori server (es. 500 Internal Server Error, 502 Bad Gateway, 503 Service Unavailable).
+
+## 9. CORS (Cross-Origin Resource Sharing)
+- Meccanismo che consente o blocca richieste tra domini diversi per motivi di sicurezza.
+- *Pre-flight:* richiesta OPTIONS inviata dal browser prima di una richiesta complessa (es. PUT, DELETE, con headers speciali).
+- Il server risponde con headers come **Access-Control-Allow-Origin**, **Access-Control-Allow-Methods** e **Access-Control-Allow-Headers** per autorizzare o meno la richiesta.
+
+## 10. Pre-flight e flow di CORS
+- Browser manda richiesta OPTIONS con intestazioni che verificano supporto di metodi e headers desiderati.
+- Se il server permette, risponde con headers di autorizzazione, altrimenti blocca la richiesta.
+
+## 11. Importanza delle risposte HTTP
+- Consentono di comprendere rapidamente l’esito della richiesta senza dover analizzare il corpo.
+- Standardizza il comportamento tra client e server, facilitando debugging e gestione errori.
